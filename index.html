@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Employee Management System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header container">
+    <div class="logo">Employee Manager <i class="fas fa-users"></i></div>
+    <button class="toggle-trash-btn" id="toggleTrashBtn">
+      <i class="fas fa-trash"></i> Show Trash
+    </button>
+  </header>
+
+  <main class="container">
+    <section class="form-section">
+      <h2>Add New Employee</h2>
+      <form id="employeeForm" class="employee-form" autocomplete="off">
+        <label for="name">Name Employee</label>
+        <input type="text" id="name" name="name" placeholder="Name Employee" required />
+
+        <label for="role">Role Employee</label>
+        <input type="text" id="role" name="role" placeholder="Role Employee" required />
+
+        <label for="status">Status Employee</label>
+        <select id="status" name="status" required>
+          <option value="">-- Select Status --</option>
+          <option value="Active">Active</option>
+          <option value="OnLeave">On Leave</option>
+          <option value="Terminated">Terminated</option>
+        </select>
+
+        <button type="submit" class="btnAdd">
+          <i class="fas fa-plus-circle"></i> Add Employee
+        </button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Employee List</h2>
+      <table id="employeeTable" class="styled-table" role="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="employeeTbody"></tbody>
+      </table>
+    </section>
+
+    <section class="trash-section container" id="trashSection" style="display: none;">
+      <h2>
+        Trash Bin
+        <span id="trashCount" style="font-weight: normal; font-size: 0.9rem; color: #555;"></span>
+      </h2>
+      <table id="trashTable" class="styled-table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Role</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="trashTbody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
