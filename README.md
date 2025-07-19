@@ -11,7 +11,10 @@ A modern, responsive and user-friendly system to manage employee records built w
 
 ## Preview
 
-![Main UI](assets.png)
+![Main UI](assets/1.png)
+![Main UI](assets/2.png)
+![Main UI](assets/3.png)
+>>>>>>> 4cc3005 ( add screenshot)
 
 ## Technologies
 
