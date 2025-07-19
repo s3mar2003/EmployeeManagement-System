@@ -11,7 +11,7 @@ A modern, responsive and user-friendly system to manage employee records built w
 
 ## Preview
 
-![Main UI](assetsscreenshot-main.png)
+![Main UI](assets.png)
 
 ## Technologies
 
