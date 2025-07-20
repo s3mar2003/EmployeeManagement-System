@@ -1,249 +1,513 @@
-
- :root {
-  --color-bg: #fafafa;
-  --color-white: hsl(0, 0%, 100%);
-  --color-primary: #195e36;          
-  --color-primary-light: #7dcea0;   
+:root {
+  --color-bg: #f4f6f8;
+  --color-white: #ffffff;
+  --color-primary: #2ecc71;
+  --color-primary-dark: #27ae60;
+  --color-primary-light: #7ee2a8;
+  --color-danger: #e74c3c;
   --color-text: #333;
-  --color-text-secondary: #666;
-  --color-active: #a8e6cf;          
-  --color-onleave: #ffd8a8;
-  --color-terminated: #ff9999;
+  --color-muted: #777;
   --border-radius: 12px;
   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
-
-
-
 
 body {
-  background-color: var(--color-bg);
-  font-family: var(--font-family);
   margin: 0;
-  padding: 2rem;
+  background: var(--color-bg);
+  font-family: var(--font-family);
   color: var(--color-text);
-  min-height: 100vh;
+  padding: 0;
+  line-height: 1.5;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  background: var(--color-white);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-.header .logo {
-  font-weight: 700;
-  font-size: 2rem;
-  color: var(--color-primary);
-  user-select: none;
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--color-primary-dark);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
 .toggle-trash-btn {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border: none;
-  padding: 0.6rem 1.2rem;
+  background: var(--color-danger);
+  color: #fff;
+  padding: 0.7rem 1.5rem;
   font-size: 1rem;
-  border-radius: var(--border-radius);
-  cursor: pointer;
-  transition: background-color 0.3s ease;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .toggle-trash-btn:hover {
-  background-color: var(--color-primary-light);
+  background: #c0392b;
+  transform: translateY(-2px);
 }
 
-/* form */
-.form-section {
-  background-color: var(--color-white);
-  padding: 1.8rem 2rem;
+.search-section {
+  margin-bottom: 2rem;
+  background: var(--color-white);
+  padding: 1rem 1.5rem;
   border-radius: var(--border-radius);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-bottom: 3rem;
-}
-
-.employee-form {
+  box-shadow: var(--shadow);
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.employee-form label {
-  flex: 1 1 100%;
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-
-.employee-form input,
-.employee-form select {
-  flex: 1 1 calc(50% - 1rem);
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
+.search-section input {
+  padding: 0.8rem;
   border-radius: var(--border-radius);
-  border: 1.5px solid #ccc;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  font-size: 1rem;
   transition: border-color 0.3s ease;
 }
 
-.employee-form input:focus,
-.employee-form select:focus {
+.search-section input:focus {
   border-color: var(--color-primary);
   outline: none;
 }
 
-.employee-form button.btnAdd {
-  flex: 1 1 100%;
-  margin-top: 1rem;
-  background-color: var(--color-primary);
-  border: none;
-  color: white;
-  padding: 0.8rem 0;
-  font-size: 1.2rem;
+.form-section {
+  grid-area: form;
+  background-color: var(--color-white);
+  padding: 2rem 2.5rem;
   border-radius: var(--border-radius);
-  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
   font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+/* === Form uses grid === */
+.employee-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1.8rem 2.5rem;
+}
+
+.employee-form label {
+  grid-column: span 2;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.employee-form input[type="text"],
+.employee-form input[type="number"],
+.employee-form select {
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  border: 1.8px solid #ccc;
+  width: 100%;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: var(--color-text);
+  outline-offset: 2px;
+}
+
+.employee-form input[type="text"]:focus,
+.employee-form input[type="number"]:focus,
+.employee-form select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 8px rgba(42, 115, 216, 0.4);
+  outline: none;
+  color: var(--color-text);
+}
+
+.employee-form button.btnAdd {
+  grid-column: span 2;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: 1rem 0;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 10px rgba(42, 115, 216, 0.5);
   transition: background-color 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
 }
 
 .employee-form button.btnAdd:hover {
   background-color: var(--color-primary-light);
 }
 
+
 .styled-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 12px;
-  font-size: 1rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  background-color: var(--color-white);
+  border-spacing: 0 8px;
+  background: var(--color-white);
   border-radius: var(--border-radius);
   overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-top: 1rem;
 }
 
-.styled-table thead tr {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  text-align: left;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.styled-table thead tr th {
-  padding: 12px 20px;
-}
-
-.styled-table tbody tr {
-  background-color: #f9f9f9;
-  border-radius: var(--border-radius);
-  transition: background-color 0.3s ease;
-  cursor: default;
-}
-
-.styled-table tbody tr:hover {
-  background-color: var(--color-primary-light);
+.styled-table thead {
+  background: var(--color-primary-dark);
   color: #fff;
 }
 
-.styled-table tbody tr td {
-  padding: 12px 20px;
+.styled-table th,
+.styled-table td {
+  padding: 1rem;
+  text-align: left;
   vertical-align: middle;
-  border: none;
 }
 
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.3rem 0.9rem;
-  border-radius: 15px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  user-select: none;
-  white-space: nowrap;
+.styled-table tbody tr {
+  background: #fafafa;
+  transition: 0.3s ease;
 }
 
-.status-active {
-  background-color: var(--color-active);
-  color: #236a24;
-}
-
-.status-active i {
-  color: #236a24;
-}
-
-.status-onleave {
-  background-color: var(--color-onleave);
-  color: #a75c00;
-}
-
-.status-onleave i {
-  color: #a75c00;
-}
-
-.status-terminated {
-  background-color: var(--color-terminated);
-  color: #7a1919;
-}
-
-.status-terminated i {
-  color: #7a1919;
+.styled-table tbody tr:hover {
+  background: var(--color-primary-light);
+  color: #fff;
 }
 
 .action-btn {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 1rem;
-  padding: 6px 10px;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.8rem;
   margin: 0 4px;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   transition: background-color 0.25s ease;
-  user-select: none;
-  color: var(--color-primary);
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
 }
 
 .action-btn.edit {
-  color: #4caf50;
+  color: #27ae60;
 }
 
 .action-btn.edit:hover {
-  background-color: #d1f7d1;
+  background-color: #d4efdf;
 }
 
 .action-btn.delete {
-  color: #f44336;
+  color: var(--color-danger);
 }
 
 .action-btn.delete:hover {
-  background-color: #fddede;
+  background-color: #f8d7da;
 }
 
-.trash-section {
-  margin-top: 3rem;
+.action-btn.bonus-btn {
+  color: #2980b9;
 }
+
+.action-btn.bonus-btn:hover {
+  background-color: #d6eaf8;
+}
+
+/* Payroll Summary */
+.payroll-summary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  background: var(--color-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+#removeLowSalaryBtn {
+  background: var(--color-danger);
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  font-weight: bold;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#removeLowSalaryBtn:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+}
+
+/* Filter Section */
+.filter-section {
+  background: var(--color-white);
+  padding: 2rem 2rem 1rem 2rem;
+  margin: 2rem 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.filter-section h2 {
+  margin-bottom: 1.5rem;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+/* هذا يشكل grid بأعمدة واضحة */
+.filter-section form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem 2rem;
+  align-items: center;
+}
+
+/* الليبل والإنبوت في عمود منفصل داخل grid */
+.filter-section label {
+  grid-column: auto / span 1;
+  justify-self: start;
+  font-weight: 600;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  user-select: none;
+  line-height: 1.4;
+}
+
+/* الحقول تأخذ كامل العرض داخل عمودها */
+.filter-section input,
+.filter-section select {
+  grid-column: auto / span 1;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1.5px solid #ccc;
+  background: #fafafa;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.filter-section input:focus,
+.filter-section select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+/* زر مسح الفلاتر يمتد على عمودين */
+#clearFiltersBtn {
+  grid-column: 1 / -1;
+  justify-self: start;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+#clearFiltersBtn:hover {
+  background-color: #27ae60; /* أخضر داكن */
+}
+
+/* اجعل زر التنظيف يحتل عمودين */
+#clearFiltersBtn {
+  grid-column: span 2;
+  justify-self: start;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#clearFiltersBtn:hover {
+  background: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+/* Error Box */
+#errorBox {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 1rem;
+  border: 1px solid #f5c6cb;
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+  list-style: inside disc;
+  font-weight: 600;
+  user-select: none;
+  max-width: 600px;
+  box-shadow: var(--shadow);
+}
+
+/* Modal */
+.modal {
+  display: none; /* مخفي افتراضيًا */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* محتوى المودال */
+.modal > div {
+  background: var(--color-white);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  width: 320px;
+  max-width: 90%;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  text-align: center;
+}
+
+/* عنوان المودال */
+.modal h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}
+
+/* حقل إدخال النسبة */
+.modal input {
+  width: 100%;                /* نفس عرض المودال */
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.modal input:focus {
+  border-color: var(--color-primary-dark);
+  outline: none;
+}
+
+/* مجموعة الأزرار */
+.modal .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+/* زر الإلغاء */
+.modal button.cancel-btn {
+  background: #ccc;
+  color: #000;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.modal button.cancel-btn:hover {
+  background: #b3b3b3;
+}
+
+/* زر الحفظ */
+.modal button.save-btn {
+  background: var(--color-primary-dark);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.modal button.save-btn:hover {
+  background: var(--color-primary);
+}
+
 
 @media (max-width: 768px) {
-  .employee-form input,
-  .employee-form select {
-    flex: 1 1 100%;
+  .header {
+    flex-direction: column;
+    gap: 1rem;
   }
+
+  .employee-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .employee-form .btnAdd {
+    grid-column: span 1 !important;
+  }
+
+  .payroll-summary {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filter-section form {
+    grid-template-columns: 1fr !important;
+  }
+
+  #clearFiltersBtn {
+    grid-column: span 1 !important;
+    justify-self: stretch;
+  }
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  user-select: none;
+  vertical-align: middle;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.badge-high {
+  background-color: #27ae60; /* أخضر */
+}
+
+.badge-bonus {
+  background-color: #e91e63; /* وردي */
 }

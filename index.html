@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -17,11 +17,18 @@
   </header>
 
   <main class="container">
-    <section class="form-section">
+     <section class="search-section">
+      <label for="searchEmployee">Search Employee by Name:</label>
+      <input type="text" id="searchEmployee" placeholder="Type full or partial name..." />
+       </section>
+
+      <section class="form-section">
       <h2>Add New Employee</h2>
       <form id="employeeForm" class="employee-form" autocomplete="off">
         <label for="name">Name Employee</label>
         <input type="text" id="name" name="name" placeholder="Name Employee" required />
+         <label for="salary">Salary Employee</label>
+         <input type="number" id="salary" placeholder="Salary Employee" required /> 
 
         <label for="role">Role Employee</label>
         <input type="text" id="role" name="role" placeholder="Role Employee" required />
@@ -38,7 +45,8 @@
           <i class="fas fa-plus-circle"></i> Add Employee
         </button>
       </form>
-    </section>
+      </section>
+    
 
     <section>
       <h2>Employee List</h2>
@@ -48,12 +56,40 @@
             <th scope="col">Name</th>
             <th scope="col">Role</th>
             <th scope="col">Status</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Bonus</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody id="employeeTbody"></tbody>
       </table>
     </section>
+
+       <section class="payroll-summary">
+       <h3>Total Payroll: <span id="totalPayroll">0 R</span></h3>
+       <button id="removeLowSalaryBtn">Remove Employees ≤ 20,000 R</button>
+    </section>
+
+
+
+    <section class="filter-section container">
+  <h2>Filter Employees</h2>
+  <form id="filterForm" autocomplete="off">
+    <input type="text" id="filterName" placeholder="Filter by Name" />
+    <input type="text" id="filterRole" placeholder="Filter by Role" />
+    <input type="number" id="filterSalaryMax" min="0" placeholder="Max Salary" />
+    <input type="number" id="filterBonusMin" min="0" placeholder="Min Bonus" />
+    <select id="filterStatus">
+      <option value="">-- All Statuses --</option>
+      <option value="Active">Active</option>
+      <option value="OnLeave">On Leave</option>
+      <option value="Terminated">Terminated</option>
+    </select>
+
+    <button type="button" id="clearFiltersBtn">Clear Filters</button>
+  </form>
+</section>
+
 
     <section class="trash-section container" id="trashSection" style="display: none;">
       <h2>
@@ -66,6 +102,8 @@
             <th scope="col">Name</th>
             <th scope="col">Role</th>
             <th scope="col">Status</th>
+            <th scope="col">Salary</th>
+             <th scope="col">Bonus</th> 
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -73,6 +111,16 @@
       </table>
     </section>
   </main>
+
+<div id="bonusModal" class="modal">
+  <div>
+    <h3>Enter Bonus Percentage</h3>
+    <input type="number" id="bonusInput" placeholder="Bonus % (e.g., 10)" min="0" max="100" />
+    <div class="modal-actions">
+      <button class="cancel-btn" id="bonusCancelBtn">Cancel</button>
+      <button class="save-btn" id="bonusSaveBtn">Save</button>
+    </div>
+  
 
   <script src="script.js"></script>
 </body>
