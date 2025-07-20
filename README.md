@@ -27,16 +27,19 @@ This project provides an easy way to manage employees with an elegant UI, real-t
 
 ---
 
-## Preview
+ Preview
 
-### Dashboard UI:
-![Main UI](assets/1.png)
+ Dashboard UI:
+![1](assets/1.png)
 
-### Add Employee & Validation:
-![Add Form](assets/2.png)
+![2](assets/2.png)
 
-### Filtering & Trash Bin:
-![Filter & Trash](assets/3.png)
+![3](assets/3.png)
+![4](assets/4.png)
+![5](assets/5.png)
+![6](assets/6.png)
+![7](assets/7.png)
+![8](assets/8.png)
 
 ---
 
@@ -51,8 +54,3 @@ This project provides an easy way to manage employees with an elegant UI, real-t
   - DOM Manipulation.
   - Form validation (regex-based).
   - Event listeners for filters and CRUD operations.
-
----
-
-
-
